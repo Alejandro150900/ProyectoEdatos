@@ -10,7 +10,7 @@ package Juego;
  */
 public class Arquero {
      private double puntajeDebilidad; // Puntaje de debilidad del arquero
-    private double ValorDeDaño; // Puntaje de daño del arquero
+    private double ValorDeDaño; // Puntaje de daño del arquero arquero
 
     public Arquero() {
         this.puntajeDebilidad = 0.5;
