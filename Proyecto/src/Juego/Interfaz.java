@@ -12,6 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -19,12 +20,33 @@ import javax.swing.JPanel;
  * @author Alejandro
  */
 public class Interfaz {
-     JFrame ventana;
+
+    JFrame ventana;
 
     JPanel presentacion;
     JButton iniciar;
     JLabel imagenPresentacion;
     ImageIcon archivo;
+
+    //MENU
+    JPanel menu;
+    JButton botones[];
+    JLabel fondoMenu;
+    ImageIcon imagenMenu;
+
+    //juego
+    String jugador;
+    String puntos;
+
+    JLabel nombre;
+    JLabel fondoJuego;
+    JLabel matriz[][];
+
+    JPanel panelJuego;
+
+    int mat[][];
+
+    ImageIcon imagenFondoJuego;
 
     public Interfaz() {
 
@@ -50,16 +72,27 @@ public class Interfaz {
 
         imagenPresentacion = new JLabel();
         imagenPresentacion.setBounds(0, 0, ventana.getWidth(), ventana.getHeight());
-        archivo = new ImageIcon("ImagenesProyecto/download _2_.png");
+        //CAMBIE LA IMAGEN DEL INICIO
+        archivo = new ImageIcon("ImagenesProyecto/tower-defense2.jpg");
         archivo = new ImageIcon(archivo.getImage().getScaledInstance(ventana.getWidth(), ventana.getHeight(), Image.SCALE_DEFAULT));
         imagenPresentacion.setIcon(archivo);
         imagenPresentacion.setVisible(true);
         presentacion.add(imagenPresentacion, 0);
 
+        //copiar esto
+        //menu
+        botones = new JButton[5];
+        for (int i = 0; i < botones.length; i++) {
+            botones[i] = new JButton();
+
+        }
+
         iniciar.addMouseListener(new MouseAdapter() {
 
-            public void MouseInteraccion(MouseEvent e) {
+            public void mousePressed(MouseEvent e) {
                 System.out.println("Iniciar");
+                menu();
+                botonesMenu();
             }
         });
 
@@ -67,6 +100,84 @@ public class Interfaz {
 
         ventana.setVisible(
                 true);
+
+    }
+
+    public void jugar() {
+        
+        menu.setVisible(false);
+        panelJuego = new JPanel();
+        panelJuego.setLayout(null);
+        panelJuego.setBounds(0, 0, ventana.getWidth(), ventana.getHeight());
+        panelJuego.setVisible(true);
+
+        fondoJuego = new JLabel();
+        fondoJuego.setBounds(0, 0, ventana.getWidth(), ventana.getHeight());
+        
+        imagenFondoJuego = new ImageIcon("ImagenesProyecto/tower-defense2.jpg");
+        imagenFondoJuego = new ImageIcon(imagenMenu.getImage().getScaledInstance(ventana.getWidth(), ventana.getHeight(), Image.SCALE_DEFAULT));
+        fondoJuego.setIcon(imagenFondoJuego);
+        fondoJuego.setVisible(true);
+        panelJuego.add(fondoJuego, 0);
+        
+        ventana.add(panelJuego);
+
+    }
+
+    public void menu() {
+
+        presentacion.setVisible(false);
+        menu = new JPanel();
+        menu.setLayout(null);
+        menu.setBounds(0, 0, ventana.getWidth(), ventana.getHeight());
+        menu.setVisible(true);
+
+        fondoMenu = new JLabel();
+        fondoMenu.setBounds(0, 0, ventana.getWidth(), ventana.getHeight());
+        //CAMBIE LA IMAGEN DEL INICIO
+        imagenMenu = new ImageIcon("ImagenesProyecto/tower-defense2.jpg");
+        imagenMenu = new ImageIcon(imagenMenu.getImage().getScaledInstance(ventana.getWidth(), ventana.getHeight(), Image.SCALE_DEFAULT));
+        fondoMenu.setIcon(imagenMenu);
+        fondoMenu.setVisible(true);
+        menu.add(fondoMenu, 0);
+
+        botones[0].setText("jugar");
+        botones[4].setText("Salir");
+
+        for (int i = 0; i < botones.length; i++) {
+            botones[i].setBounds(ventana.getWidth() - (200 + 50), (i + 1) * 50, 200, 40);
+            botones[i].setVisible(true);
+            botones[i].setBackground(Color.white);
+            menu.add(botones[i], 0);
+
+        }
+        ventana.add(menu);
+
+    }
+
+    public void botonesMenu() {
+        //boton jugar
+        botones[0].addMouseListener(new MouseAdapter() {
+
+            public void mousePressed(MouseEvent e) {
+                System.out.println("Jugar");
+                jugador = JOptionPane.showInputDialog(ventana, "Nombre del jugador", "Escribe aqui");
+                while (jugador == null || jugador.compareTo("Escribe aqui") == 0 || jugador.compareTo("") == 0) {
+                    jugador = JOptionPane.showInputDialog(ventana, "Debes ingresar usuario", "Esceribe aqui");
+                }
+                jugar();
+
+            }
+        });
+
+        //Boton salir
+        botones[4].addMouseListener(new MouseAdapter() {
+
+            public void mousePressed(MouseEvent e) {
+                System.out.println("Salir");
+                System.exit(0);
+            }
+        });
 
     }
 }
