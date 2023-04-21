@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
+//import javax.swing.JOptionPane; 
 import javax.swing.JPanel;
 
 /**
@@ -21,6 +21,7 @@ import javax.swing.JPanel;
  */
 public class Interfaz {
 
+    //Interfaz
     JFrame ventana;
 
     JPanel presentacion;
@@ -35,16 +36,14 @@ public class Interfaz {
     ImageIcon imagenMenu;
 
     //juego
+    JPanel panelJuego;
+
     String jugador;
     String puntos;
-
+    int mat[][];
     JLabel nombre;
     JLabel fondoJuego;
     JLabel matriz[][];
-
-    JPanel panelJuego;
-
-    int mat[][];
 
     ImageIcon imagenFondoJuego;
 
@@ -65,7 +64,7 @@ public class Interfaz {
         ventana.add(presentacion, -1);
 
         iniciar = new JButton(" Iniciar ");
-        iniciar.setBounds(ventana.getWidth() - 430, 260, 150, 30); //coordenas de posicion y tamaño del boton
+        iniciar.setBounds(ventana.getWidth() - 430, 500, 150, 30); //coordenas de posicion y tamaño del boton
         iniciar.setVisible(true);
         iniciar.setBackground(Color.white);
         presentacion.add(iniciar, 0);
@@ -73,7 +72,7 @@ public class Interfaz {
         imagenPresentacion = new JLabel();
         imagenPresentacion.setBounds(0, 0, ventana.getWidth(), ventana.getHeight());
         //CAMBIE LA IMAGEN DEL INICIO
-        archivo = new ImageIcon("ImagenesProyecto/tower-defense2.jpg");
+        archivo = new ImageIcon("ImagenesProyecto/TowerDefense_inicio.png");
         archivo = new ImageIcon(archivo.getImage().getScaledInstance(ventana.getWidth(), ventana.getHeight(), Image.SCALE_DEFAULT));
         imagenPresentacion.setIcon(archivo);
         imagenPresentacion.setVisible(true);
@@ -81,7 +80,7 @@ public class Interfaz {
 
         //copiar esto
         //menu
-        botones = new JButton[5];
+        botones = new JButton[2];
         for (int i = 0; i < botones.length; i++) {
             botones[i] = new JButton();
 
@@ -96,6 +95,20 @@ public class Interfaz {
             }
         });
 
+        //Juego
+        mat = new int[12][12];
+        matriz = new JLabel[12][12];
+
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat.length; j++) {
+                matriz[i][j] = new JLabel();
+
+            }
+
+        }
+
+        mat = tablero(1);
+
         ventana.add(presentacion);
 
         ventana.setVisible(
@@ -104,7 +117,7 @@ public class Interfaz {
     }
 
     public void jugar() {
-        
+
         menu.setVisible(false);
         panelJuego = new JPanel();
         panelJuego.setLayout(null);
@@ -113,15 +126,51 @@ public class Interfaz {
 
         fondoJuego = new JLabel();
         fondoJuego.setBounds(0, 0, ventana.getWidth(), ventana.getHeight());
-        
-        imagenFondoJuego = new ImageIcon("ImagenesProyecto/tower-defense2.jpg");
-        imagenFondoJuego = new ImageIcon(imagenMenu.getImage().getScaledInstance(ventana.getWidth(), ventana.getHeight(), Image.SCALE_DEFAULT));
+
+        imagenFondoJuego = new ImageIcon("ImagenesProyecto/jugar.png");
+        imagenFondoJuego = new ImageIcon(imagenFondoJuego.getImage().getScaledInstance(ventana.getWidth(), ventana.getHeight(), Image.SCALE_DEFAULT));
         fondoJuego.setIcon(imagenFondoJuego);
         fondoJuego.setVisible(true);
         panelJuego.add(fondoJuego, 0);
-        
+
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat.length; j++) {
+
+                matriz[i][j].setIcon(new ImageIcon("ImagenesProyecto/" + mat[i][j] + ".png"));
+                matriz[i][j].setBounds(200 + (i * 50), 200 + (j * 50), 50, 50);
+                matriz[i][j].setVisible(true);
+                panelJuego.add(matriz[i][j], 0);
+
+            }
+
+        }
+
         ventana.add(panelJuego);
 
+    }
+
+    public int[][] tablero(int opcion) {
+        int[][] aux1 = new int[12][12];
+        if (opcion == 1) {
+
+            int aux[][] = {
+                {1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2},
+                {1, 1, 1, 1, 1, 4, 1, 1, 1, 3, 2, 2},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2},
+                {1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2},
+                {1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2},};
+
+            return aux;
+        }
+
+        return aux1;
     }
 
     public void menu() {
@@ -135,14 +184,14 @@ public class Interfaz {
         fondoMenu = new JLabel();
         fondoMenu.setBounds(0, 0, ventana.getWidth(), ventana.getHeight());
         //CAMBIE LA IMAGEN DEL INICIO
-        imagenMenu = new ImageIcon("ImagenesProyecto/tower-defense2.jpg");
+        imagenMenu = new ImageIcon("ImagenesProyecto/TowerDefense_menu.png");
         imagenMenu = new ImageIcon(imagenMenu.getImage().getScaledInstance(ventana.getWidth(), ventana.getHeight(), Image.SCALE_DEFAULT));
         fondoMenu.setIcon(imagenMenu);
         fondoMenu.setVisible(true);
         menu.add(fondoMenu, 0);
 
         botones[0].setText("jugar");
-        botones[4].setText("Salir");
+        botones[1].setText("Salir");
 
         for (int i = 0; i < botones.length; i++) {
             botones[i].setBounds(ventana.getWidth() - (200 + 50), (i + 1) * 50, 200, 40);
@@ -161,17 +210,17 @@ public class Interfaz {
 
             public void mousePressed(MouseEvent e) {
                 System.out.println("Jugar");
-                jugador = JOptionPane.showInputDialog(ventana, "Nombre del jugador", "Escribe aqui");
-                while (jugador == null || jugador.compareTo("Escribe aqui") == 0 || jugador.compareTo("") == 0) {
-                    jugador = JOptionPane.showInputDialog(ventana, "Debes ingresar usuario", "Esceribe aqui");
-                }
+//                jugador = JOptionPane.showInputDialog(ventana, "Nombre del jugador", "Escribe aqui"); //eliminar JOptionPane
+//                while (jugador == null || jugador.compareTo("Escribe aqui") == 0 || jugador.compareTo("") == 0) {
+//                    jugador = JOptionPane.showInputDialog(ventana, "Debes ingresar usuario", "Escribe aqui");
+//                }
                 jugar();
 
             }
         });
 
         //Boton salir
-        botones[4].addMouseListener(new MouseAdapter() {
+        botones[1].addMouseListener(new MouseAdapter() {
 
             public void mousePressed(MouseEvent e) {
                 System.out.println("Salir");
