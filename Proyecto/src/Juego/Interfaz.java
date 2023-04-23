@@ -6,6 +6,8 @@ package Juego;
 
 import java.awt.Color;
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
@@ -36,16 +38,15 @@ public class Interfaz {
     ImageIcon imagenMenu;
 
     //juego
+//    JButton botonVolver;
     JPanel panelJuego;
-
-    String jugador;
-    String puntos;
-    int mat[][];
-    JLabel nombre;
     JLabel fondoJuego;
-    JLabel matriz[][];
-
     ImageIcon imagenFondoJuego;
+    int mat[][];
+    JLabel matriz[][];
+    String jugador;
+    JLabel nombre;
+    String puntos;
 
     public Interfaz() {
 
@@ -111,8 +112,7 @@ public class Interfaz {
 
         ventana.add(presentacion);
 
-        ventana.setVisible(
-                true);
+        ventana.setVisible(true);
 
     }
 
@@ -137,7 +137,7 @@ public class Interfaz {
             for (int j = 0; j < mat.length; j++) {
 
                 matriz[i][j].setIcon(new ImageIcon("ImagenesProyecto/" + mat[i][j] + ".png"));
-                matriz[i][j].setBounds(200 + (i * 50), 200 + (j * 50), 50, 50);
+                matriz[i][j].setBounds(50 + (i * 50), 50 + (j * 50), 50, 50);
                 matriz[i][j].setVisible(true);
                 panelJuego.add(matriz[i][j], 0);
 
@@ -145,27 +145,41 @@ public class Interfaz {
 
         }
 
-        ventana.add(panelJuego);
-
+        //metodo para el boton de volver al menu
+        JButton btnVolver = new JButton("Volver al Menú");
+        btnVolver.setBounds(ventana.getWidth() - 200, 20, 150, 30);
+        btnVolver.setVisible(true);
+        btnVolver.setBackground(Color.white);
+        btnVolver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelJuego.setVisible(false);
+                menu.setVisible(true);
+            }
+        });
+        
+        
+        panelJuego.add(btnVolver);
+        ventana.add(panelJuego);//agrega el panel con la matriz 
     }
 
     public int[][] tablero(int opcion) {
         int[][] aux1 = new int[12][12];
-        if (opcion == 1) {
+        while (opcion == 1) {
 
             int aux[][] = {
-                {1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2},
-                {1, 1, 1, 1, 1, 4, 1, 1, 1, 3, 2, 2},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2},
-                {1, 1, 1, 1, 1, 1, 1, 1, 1, 3, 2, 2},
-                {1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2},};
+                {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
+                {1, 1, 1, 8, 7, 1, 5, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
+                {1, 6, 1, 1, 1, 1, 4, 1, 1, 1, 6, 1},
+                {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
+                {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3},
+                {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
+                {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},};
 
             return aux;
         }
