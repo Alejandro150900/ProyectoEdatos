@@ -4,7 +4,10 @@
  */
 package Juego;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,6 +15,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 //import javax.swing.JOptionPane; 
@@ -44,10 +48,10 @@ public class Interfaz {
     ImageIcon imagenFondoJuego;
     int mat[][];
     JLabel matriz[][];
-    String jugador;
-    JLabel nombre;
-    String puntos;
 
+    /*String jugador;
+    JLabel nombre;
+    String puntos;*/
     public Interfaz() {
 
         ventana = new JFrame("Tower Defense");
@@ -144,22 +148,136 @@ public class Interfaz {
             }
 
         }
-
         //metodo para el boton de volver al menu
         JButton btnVolver = new JButton("Volver al Menú");
         btnVolver.setBounds(ventana.getWidth() - 200, 20, 150, 30);
-        btnVolver.setVisible(true);
         btnVolver.setBackground(Color.white);
         btnVolver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelJuego.setVisible(false);
-                menu.setVisible(true);
+                MiVentanaEmergente ventanaEmergente = new MiVentanaEmergente(ventana, "¿Estás seguro que quieres volver al menú?");
+                ventanaEmergente.setVisible(true);
+
+                if (ventanaEmergente.isConfirmado()) {
+                    panelJuego.setVisible(false);
+                    menu.setVisible(true);
+                }
             }
         });
-        
-        
+
+        //Botones de los personajes
+        JButton btnMago = new JButton("Mago");
+        btnMago.setBounds(ventana.getWidth() - 200, 200, 150, 40);
+        btnMago.setVisible(true);
+        btnMago.setBackground(Color.white);
+        btnMago.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame ventanaEmergente = new JFrame("Selección de dirección");
+                ventanaEmergente.setSize(300, 100);
+                ventanaEmergente.setLocationRelativeTo(null);
+                ventanaEmergente.setLayout(new GridLayout(1, 2));
+
+                JButton btnIzquierda = new JButton("Izquierda");
+                btnIzquierda.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        // Aqui va el codigo para cuando seleccionamos izquierda
+                        ventanaEmergente.dispose();
+                    }
+                });
+
+                JButton btnDerecha = new JButton("Derecha");
+                btnDerecha.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        // Aqui va el codigo para cuando seleccionamos derecha
+                        ventanaEmergente.dispose();
+                    }
+                });
+
+                ventanaEmergente.add(btnIzquierda);
+                ventanaEmergente.add(btnDerecha);
+                ventanaEmergente.setVisible(true);
+            }
+        });
+
+        JButton btnCaballero = new JButton("Caballero");
+        btnCaballero.setBounds(ventana.getWidth() - 200, 250, 150, 40);
+        btnCaballero.setVisible(true);
+        btnCaballero.setBackground(Color.white);
+        btnCaballero.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame ventanaEmergente = new JFrame("Selección de dirección");
+                ventanaEmergente.setSize(300, 100);
+                ventanaEmergente.setLocationRelativeTo(null);
+                ventanaEmergente.setLayout(new GridLayout(1, 2));
+
+                JButton btnIzquierda = new JButton("Izquierda");
+                btnIzquierda.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                         // Aqui va el codigo para cuando seleccionamos izquierda
+                        ventanaEmergente.dispose();
+                    }
+                });
+
+                JButton btnDerecha = new JButton("Derecha");
+                btnDerecha.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                       // Aqui va el codigo para cuando seleccionamos derecha
+                        ventanaEmergente.dispose();
+                    }
+                });
+
+                ventanaEmergente.add(btnIzquierda);
+                ventanaEmergente.add(btnDerecha);
+                ventanaEmergente.setVisible(true);
+            }
+        });
+
+        JButton btnArquero = new JButton("Arquero");
+        btnArquero.setBounds(ventana.getWidth() - 200, 300, 150, 40);
+        btnArquero.setVisible(true);
+        btnArquero.setBackground(Color.white);
+        btnArquero.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFrame ventanaEmergente = new JFrame("Selección de dirección");
+                ventanaEmergente.setSize(300, 100);
+                ventanaEmergente.setLocationRelativeTo(null);
+                ventanaEmergente.setLayout(new GridLayout(1, 2));
+
+                JButton btnIzquierda = new JButton("Izquierda");
+                btnIzquierda.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        // Aqui va el codigo para cuando seleccionamos izquierda
+                        ventanaEmergente.dispose();
+                    }
+                });
+
+                JButton btnDerecha = new JButton("Derecha");
+                btnDerecha.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        // Aqui va el codigo para cuando seleccionamos derecha
+                        ventanaEmergente.dispose();
+                    }
+                });
+
+                ventanaEmergente.add(btnIzquierda);
+                ventanaEmergente.add(btnDerecha);
+                ventanaEmergente.setVisible(true);
+            }
+        });
+
         panelJuego.add(btnVolver);
+        panelJuego.add(btnMago);
+        panelJuego.add(btnCaballero);
+        panelJuego.add(btnArquero);
         ventana.add(panelJuego);//agrega el panel con la matriz 
     }
 
@@ -243,4 +361,49 @@ public class Interfaz {
         });
 
     }
+
+    //Pantalla emergente para confirmar si se quiere salir al menu
+    public class MiVentanaEmergente extends JDialog {
+
+        private boolean confirmado = false;
+
+        public MiVentanaEmergente(JFrame parent, String mensaje) {
+            super(parent, "Confirmación", true);
+
+            JPanel panelMensaje = new JPanel();
+            panelMensaje.add(new JLabel(mensaje));
+
+            JButton btnConfirmar = new JButton("Confirmar");
+            btnConfirmar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    confirmado = true;
+                    dispose();
+                }
+            });
+
+            JButton btnCancelar = new JButton("Cancelar");
+            btnCancelar.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    dispose();
+                }
+            });
+
+            JPanel panelBotones = new JPanel(new FlowLayout());
+            panelBotones.add(btnConfirmar);
+            panelBotones.add(btnCancelar);
+
+            getContentPane().add(panelMensaje, BorderLayout.CENTER);
+            getContentPane().add(panelBotones, BorderLayout.SOUTH);
+
+            pack();
+            setLocationRelativeTo(parent);
+        }
+
+        public boolean isConfirmado() {
+            return confirmado;
+        }
+    }
+
 }
