@@ -20,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 //import javax.swing.JOptionPane; 
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 /**
  *
@@ -28,7 +29,7 @@ import javax.swing.JPanel;
 public class Interfaz {
 
     //Interfaz
-    JFrame ventana;
+    static JFrame ventana;
 
     JPanel presentacion;
     JButton iniciar;
@@ -43,11 +44,18 @@ public class Interfaz {
 
     //juego
 //    JButton botonVolver;
-    JPanel panelJuego;
+    static JPanel panelJuego;
     JLabel fondoJuego;
     ImageIcon imagenFondoJuego;
-    int mat[][];
-    JLabel matriz[][];
+    static int mat[][];
+    static JLabel matriz[][];
+    int px;
+    int py;
+    
+    int abajo;
+    int arriba;
+    Timer timer;
+    
 
     /*String jugador;
     JLabel nombre;
@@ -111,8 +119,17 @@ public class Interfaz {
             }
 
         }
+        
 
         mat = tablero(1);
+        px =2;
+        py =2;
+        mat[px][py] = 7;
+        
+        Arquero arquero1 = new Arquero(6,2);
+        
+        abajo = 0;
+        arriba = 0;
 
         ventana.add(presentacion);
 
@@ -148,6 +165,8 @@ public class Interfaz {
             }
 
         }
+        
+       
         //metodo para el boton de volver al menu
         JButton btnVolver = new JButton("Volver al Menú");
         btnVolver.setBounds(ventana.getWidth() - 200, 20, 150, 30);
@@ -255,6 +274,7 @@ public class Interfaz {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         // Aqui va el codigo para cuando seleccionamos izquierda
+                        
                         ventanaEmergente.dispose();
                     }
                 });
@@ -284,20 +304,22 @@ public class Interfaz {
     public int[][] tablero(int opcion) {
         int[][] aux1 = new int[12][12];
         while (opcion == 1) {
-
+            
             int aux[][] = {
+                
                 {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
                 {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
-                {1, 1, 1, 8, 7, 1, 5, 1, 1, 1, 1, 1},
+                {1, 2, 1, 1, 1, 1, 5, 1, 1, 1, 2, 1},
                 {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
                 {1, 6, 1, 1, 1, 1, 4, 1, 1, 1, 6, 1},
                 {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
-                {1, 1, 1, 1, 1, 1, 5, 1, 1, 1, 1, 1},
+                {1, 2, 1, 1, 1, 1, 5, 1, 1, 1, 2, 1},
                 {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
                 {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
                 {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3},
                 {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
                 {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},};
+                
 
             return aux;
         }

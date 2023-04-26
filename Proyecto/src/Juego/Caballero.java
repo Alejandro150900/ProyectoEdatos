@@ -9,14 +9,28 @@ package Juego;
  * @author Alejandro
  */
 public class Caballero {
-     private double puntajeDebilidad; // Puntaje de debilidad del caballero
+   
     private double ValorDeDaño; // Puntaje de daño del caballero
+    
+    int posX;
+    int posY;
 
-    public Caballero() {
-        this.puntajeDebilidad = 0.5;
-        this.   ValorDeDaño = 2.0;
+    public Caballero(int x, int y){
+        posX = x;
+        posY = y;
+       // Interfaz.mat[posX][posY]=7;
+        
     }
 
+    public void movimiento(){
+        
+    
+    
+    }//fin Movimiento
+    
+    
+    
+    
     // Métodos específicos del caballero
 
     // Método para calcular el daño que genera el caballero al castillo
