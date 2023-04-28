@@ -126,6 +126,7 @@ public class Interfaz {
         //mat[px][py] = 7;
         
         //prueba commit
+        //prueba commit 2
         
         
         abajo = 0;
