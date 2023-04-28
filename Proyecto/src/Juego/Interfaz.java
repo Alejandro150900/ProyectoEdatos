@@ -189,6 +189,9 @@ public class Interfaz {
             }
         });
 
+        
+        
+        
         //Botones de los personajes
         JButton btnMago = new JButton("Mago");
         btnMago.setBounds(ventana.getWidth() - 200, 200, 150, 40);
@@ -273,6 +276,9 @@ public class Interfaz {
             }
         });
 
+        
+        
+        
         JButton btnArquero = new JButton("Arquero");
         btnArquero.setBounds(ventana.getWidth() - 200, 300, 150, 40);
         btnArquero.setVisible(true);
@@ -292,6 +298,7 @@ public class Interfaz {
                     public void actionPerformed(ActionEvent e) {
                         // Aqui va el codigo para cuando seleccionamos izquierda
                         Arquero arq = new Arquero(2,9);
+                        
                         
                         //mat[2][9]=8;
                         ventanaEmergente.dispose();

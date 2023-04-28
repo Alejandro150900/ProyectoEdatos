@@ -18,11 +18,7 @@ public class Arquero {
     
     int arqX;
     int arqY;
-    Random aleatorio;
-    Timer timer;
-    int direccion;
-    int movX;
-    int movY;
+    
     //private double puntajeDebilidad; // Puntaje de debilidad del arquero
     //private double ValorDeDaño; // Puntaje de daño del arquero arquero
 
@@ -30,12 +26,12 @@ public class Arquero {
         arqX= x;
         arqY= y;  
         Interfaz.mat[arqX][arqY] = 8;
-        direccion = 0;
+        
     }//constructor
     
     public void movimiento(){
     
-    }//fin metodo
+    }
     
     
     
