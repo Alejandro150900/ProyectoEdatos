@@ -19,7 +19,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.Timer;
+//import javax.swing.Timer;
 
 /**
  *
@@ -27,6 +27,10 @@ import javax.swing.Timer;
  */
 public class Interfaz {
 
+    private Mago mago;
+    private Caballero caballero;
+    private Arquero arquero;
+    
     //Interfaz
     static JFrame ventana;
 
@@ -42,23 +46,16 @@ public class Interfaz {
     ImageIcon imagenMenu;
 
     //juego
-//    JButton botonVolver;
     static JPanel panelJuego;
     JLabel fondoJuego;
     ImageIcon imagenFondoJuego;
     static int mat[][];
     static JLabel matriz[][];
-    int px;
-    int py;
-    
+
     int abajo;
     int arriba;
-    Timer timer;
-    
 
-    /*String jugador;
-    JLabel nombre;
-    String puntos;*/
+    
     public Interfaz() {
 
         ventana = new JFrame("Tower Defense");
@@ -118,17 +115,8 @@ public class Interfaz {
             }
 
         }
-        
 
         mat = tablero(1);
-        px =2;
-        py =2;
-        //mat[px][py] = 7;
-        
-        //prueba commit
-        //prueba commit 2
-        
-        
         abajo = 0;
         arriba = 0;
 
@@ -139,12 +127,16 @@ public class Interfaz {
     }
 
     public void jugar() {
-        
-        
-        Sonido sonido = new Sonido();
 
+        JButton btnMago = new JButton("Mago");
+        JButton btnCaballero = new JButton("Caballero");
+        JButton btnArquero = new JButton("Arquero");
+        JButton btnIniciar = new JButton("Iniciar ronda");
+
+//      mago = new Mago(2, 9);
+        Sonido sonido = new Sonido();
         sonido.reproducirSonido("SonidosProyecto/Cancion.wav");
-        
+
         menu.setVisible(false);
         panelJuego = new JPanel();
         panelJuego.setLayout(null);
@@ -155,7 +147,8 @@ public class Interfaz {
         fondoJuego.setBounds(0, 0, ventana.getWidth(), ventana.getHeight());
 
         imagenFondoJuego = new ImageIcon("ImagenesProyecto/jugar.png");
-        imagenFondoJuego = new ImageIcon(imagenFondoJuego.getImage().getScaledInstance(ventana.getWidth(), ventana.getHeight(), Image.SCALE_DEFAULT));
+        imagenFondoJuego = new ImageIcon(imagenFondoJuego.getImage().getScaledInstance
+        (ventana.getWidth(), ventana.getHeight(), Image.SCALE_DEFAULT));
         fondoJuego.setIcon(imagenFondoJuego);
         fondoJuego.setVisible(true);
         panelJuego.add(fondoJuego, 0);
@@ -163,7 +156,8 @@ public class Interfaz {
         for (int i = 0; i < mat.length; i++) {
             for (int j = 0; j < mat.length; j++) {
 
-                matriz[i][j].setIcon(new ImageIcon("ImagenesProyecto/" + mat[i][j] + ".png"));
+                matriz[i][j].setIcon(new ImageIcon
+        ("ImagenesProyecto/" + mat[i][j] + ".png"));
                 matriz[i][j].setBounds(50 + (i * 50), 50 + (j * 50), 50, 50);
                 matriz[i][j].setVisible(true);
                 panelJuego.add(matriz[i][j], 0);
@@ -171,30 +165,8 @@ public class Interfaz {
             }
 
         }
-        
-       
-        //metodo para el boton de volver al menu
-        JButton btnVolver = new JButton("Volver al Menú");
-        btnVolver.setBounds(ventana.getWidth() - 200, 20, 150, 30);
-        btnVolver.setBackground(Color.white);
-        btnVolver.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                MiVentanaEmergente ventanaEmergente = new MiVentanaEmergente(ventana, "¿Estás seguro que quieres volver al menú?");
-                ventanaEmergente.setVisible(true);
 
-                if (ventanaEmergente.isConfirmado()) {
-                    panelJuego.setVisible(false);
-                    menu.setVisible(true);
-                }
-            }
-        });
-
-        
-        
-        
         //Botones de los personajes
-        JButton btnMago = new JButton("Mago");
         btnMago.setBounds(ventana.getWidth() - 200, 200, 150, 40);
         btnMago.setVisible(true);
         btnMago.setBackground(Color.white);
@@ -211,11 +183,12 @@ public class Interfaz {
                 btnIzquierda.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
+                        System.out.print("Un mago fue agregado a la izquierda");
                         // Aqui va el codigo para cuando seleccionamos izquierda
-                        
+                        mago = new Mago(2, 9);
                         ventanaEmergente.dispose();
-                        Mago mag= new Mago(2,9);
                         jugar();
+
                     }
                 });
 
@@ -225,8 +198,9 @@ public class Interfaz {
                     public void actionPerformed(ActionEvent e) {
                         // Aqui va el codigo para cuando seleccionamos derecha
                         ventanaEmergente.dispose();
-                        Mago mag = new Mago(6,9);
+                        mago = new Mago(6, 9);
                         jugar();
+
                     }
                 });
 
@@ -235,8 +209,6 @@ public class Interfaz {
                 ventanaEmergente.setVisible(true);
             }
         });
-
-        JButton btnCaballero = new JButton("Caballero");
         btnCaballero.setBounds(ventana.getWidth() - 200, 250, 150, 40);
         btnCaballero.setVisible(true);
         btnCaballero.setBackground(Color.white);
@@ -253,9 +225,9 @@ public class Interfaz {
                 btnIzquierda.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                         // Aqui va el codigo para cuando seleccionamos izquierda
+                        // Aqui va el codigo para cuando seleccionamos izquierda
                         ventanaEmergente.dispose();
-                        Caballero cab =  new Caballero(2,9);
+                        caballero = new Caballero(2, 9);
                         jugar();
                     }
                 });
@@ -264,8 +236,8 @@ public class Interfaz {
                 btnDerecha.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                       // Aqui va el codigo para cuando seleccionamos derecha
-                       Caballero cab = new Caballero(6,9);
+                        // Aqui va el codigo para cuando seleccionamos derecha
+                        caballero = new Caballero(6, 9);
                         ventanaEmergente.dispose();
                         jugar();
                     }
@@ -277,17 +249,13 @@ public class Interfaz {
             }
         });
 
-        
-        
-        
-        JButton btnArquero = new JButton("Arquero");
         btnArquero.setBounds(ventana.getWidth() - 200, 300, 150, 40);
         btnArquero.setVisible(true);
         btnArquero.setBackground(Color.white);
         btnArquero.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                 sonido.reproducirSonido("SonidosProyecto/Arquero.Wav");
+                sonido.reproducirSonido("SonidosProyecto/Arquero.Wav");
                 JFrame ventanaEmergente = new JFrame("Selección de dirección");
                 ventanaEmergente.setSize(300, 100);
                 ventanaEmergente.setLocationRelativeTo(null);
@@ -298,17 +266,14 @@ public class Interfaz {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         // Aqui va el codigo para cuando seleccionamos izquierda
-                        Arquero arq = new Arquero(2,9);
-                        
-                        
+                        arquero = new Arquero(2, 9);
+
                         //mat[2][9]=8;
                         ventanaEmergente.dispose();
                         jugar();
-                        
-                        
-                        
+
                     }
-                    
+
                 });
 
                 JButton btnDerecha = new JButton("Derecha");
@@ -317,10 +282,10 @@ public class Interfaz {
                     public void actionPerformed(ActionEvent e) {
                         // Aqui va el codigo para cuando seleccionamos derecha
                         //mat[6][9]=8;
-                        Arquero arq= new Arquero(6,9);
+                        arquero = new Arquero(6, 9);
                         ventanaEmergente.dispose();
                         jugar();
-                        
+
                     }
                 });
 
@@ -330,6 +295,55 @@ public class Interfaz {
             }
         });
 
+        // Botón para iniciar la ronda
+        btnIniciar.setBounds(ventana.getWidth() - 200, 100, 150, 40);
+        btnIniciar.setVisible(true);
+        btnIniciar.setBackground(Color.white);
+        btnIniciar.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // aqui van los metodos para mover las tropas en la matriz
+                
+                mago.mover(2, 8);
+
+                
+                // aqui se actualiza la matriz
+                for (int i = 0; i < mat.length; i++) {
+                    for (int j = 0; j < mat.length; j++) {
+                        matriz[i][j].setIcon(new ImageIcon("ImagenesProyecto/"
+                                + mat[i][j] + ".png"));
+                    }
+                }
+            }
+        });
+
+        //metodo para el boton de volver al menu
+        JButton btnVolver = new JButton("Volver al Menú");
+        btnVolver.setBounds(ventana.getWidth() - 200, 20, 150, 30);
+        btnVolver.setBackground(Color.white);
+        btnVolver.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MiVentanaEmergente ventanaEmergente = new MiVentanaEmergente
+        (ventana, "¿Estás seguro que quieres volver al menú?");
+                ventanaEmergente.setVisible(true);
+
+                if (ventanaEmergente.isConfirmado()) {
+                    panelJuego.setVisible(false);
+                    btnVolver.setVisible(false);
+                    btnMago.setVisible(false);
+                    btnCaballero.setVisible(false);
+                    btnArquero.setVisible(false);
+                    btnIniciar.setVisible(false);
+                    menu.setVisible(true);
+
+                    sonido.pausarSonido();
+                }
+            }
+        });
+
+        panelJuego.add(btnIniciar);
+
         panelJuego.add(btnVolver);
         panelJuego.add(btnMago);
         panelJuego.add(btnCaballero);
@@ -337,12 +351,26 @@ public class Interfaz {
         ventana.add(panelJuego);//agrega el panel con la matriz 
     }
 
+    public void pintarMatriz() {
+        for (int i = 0; i < mat.length; i++) {
+            for (int j = 0; j < mat.length; j++) {
+
+                matriz[i][j].setIcon(new ImageIcon("ImagenesProyecto/" + mat[i][j] + ".png"));
+                matriz[i][j].setBounds(50 + (i * 50), 50 + (j * 50), 50, 50);
+                matriz[i][j].setVisible(true);
+                panelJuego.add(matriz[i][j], 0);
+
+            }
+
+        }
+
+    }
+
     public int[][] tablero(int opcion) {
         int[][] aux1 = new int[12][12];
         while (opcion == 1) {
-            
+
             int aux[][] = {
-                
                 {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
                 {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
                 {1, 2, 7, 1, 1, 1, 5, 1, 1, 1, 2, 1},
@@ -355,7 +383,6 @@ public class Interfaz {
                 {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3},
                 {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
                 {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},};
-                
 
             return aux;
         }
@@ -373,9 +400,9 @@ public class Interfaz {
 
         fondoMenu = new JLabel();
         fondoMenu.setBounds(0, 0, ventana.getWidth(), ventana.getHeight());
-        //CAMBIE LA IMAGEN DEL INICIO
         imagenMenu = new ImageIcon("ImagenesProyecto/TowerDefense_menu.png");
-        imagenMenu = new ImageIcon(imagenMenu.getImage().getScaledInstance(ventana.getWidth(), ventana.getHeight(), Image.SCALE_DEFAULT));
+        imagenMenu = new ImageIcon(imagenMenu.getImage().getScaledInstance
+        (ventana.getWidth(), ventana.getHeight(), Image.SCALE_DEFAULT));
         fondoMenu.setIcon(imagenMenu);
         fondoMenu.setVisible(true);
         menu.add(fondoMenu, 0);
@@ -384,7 +411,8 @@ public class Interfaz {
         botones[1].setText("Salir");
 
         for (int i = 0; i < botones.length; i++) {
-            botones[i].setBounds(ventana.getWidth() - (200 + 50), (i + 1) * 50, 200, 40);
+            botones[i].setBounds(ventana.getWidth()
+                    - (200 + 50), (i + 1) * 50, 200, 40);
             botones[i].setVisible(true);
             botones[i].setBackground(Color.white);
             menu.add(botones[i], 0);
@@ -400,10 +428,6 @@ public class Interfaz {
 
             public void mousePressed(MouseEvent e) {
                 System.out.println("Jugar");
-//                jugador = JOptionPane.showInputDialog(ventana, "Nombre del jugador", "Escribe aqui"); //eliminar JOptionPane
-//                while (jugador == null || jugador.compareTo("Escribe aqui") == 0 || jugador.compareTo("") == 0) {
-//                    jugador = JOptionPane.showInputDialog(ventana, "Debes ingresar usuario", "Escribe aqui");
-//                }
                 jugar();
 
             }

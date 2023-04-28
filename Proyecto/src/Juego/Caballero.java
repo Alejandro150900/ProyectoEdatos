@@ -8,33 +8,23 @@ package Juego;
  *
  * @author Alejandro
  */
-public class Caballero {
-   
-    private double ValorDeDaño; // Puntaje de daño del caballero
-    
-    int cabX;
-    int cabY;
+public class Caballero extends Tropa {
 
-    public Caballero(int x, int y){
-        cabX = x;
-        cabY = y;
-       Interfaz.mat[cabX][cabY]=7;
-        
+    public Caballero(int x, int y) {
+        super(x, y);
+        puntajeDebilidad = 0.5;
+        valorDeDaño = 1.0;
+        Interfaz.mat[tropaX][tropaY] = 7;
     }
 
-    public void movimiento(){
-        
-    
-    
-    }//fin Movimiento
-    
-    
-    
-    
-    // Métodos específicos del caballero
+    @Override
+    public void mover(int nuevaX, int nuevaY) {
 
-    // Método para calcular el daño que genera el caballero al castillo
-    public double DañoCastillo() {
-        return ValorDeDaño;
+        Interfaz.mat[tropaX][tropaY] = 1;
+        // rellena la posicion anterior
+        tropaX = nuevaX;
+        tropaY = nuevaY;
+        // se actliza la posicion del caballero
+        Interfaz.mat[tropaX][tropaY] = 7;
     }
 }

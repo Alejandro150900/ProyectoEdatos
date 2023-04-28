@@ -8,24 +8,23 @@ package Juego;
  *
  * @author Alejandro
  */
-public class Mago {
-     private double puntajeDebilidad; // Puntaje de debilidad del mago
-    private double ValorDeDaño; // Puntaje de daño del mago
-    int magX;
-    int magY;
-    
-    
-    
+public class Mago extends Tropa {
+
     public Mago(int x, int y) {
-        magX = x;
-        magY = y;
-        Interfaz.mat[magX][magY]=9;
+        super(x, y);
+        puntajeDebilidad = 0.5;
+        valorDeDaño = 1.0;
+        Interfaz.mat[tropaX][tropaY] = 9;
     }
 
-    // Métodos específicos del mago
+    @Override
+    public void mover(int nuevaX, int nuevaY) {
 
-    // Método para calcular el daño que genera el mago al castillo
-    public double DañoCastillo() {
-        return ValorDeDaño;
+        Interfaz.mat[tropaX][tropaY] = 1;
+        // rellena la posicion anterior
+        tropaX = nuevaX;
+        tropaY = nuevaY;
+        // se actliza la posicion del mago
+        Interfaz.mat[tropaX][tropaY] = 9;
     }
 }

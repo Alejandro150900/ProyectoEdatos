@@ -4,43 +4,28 @@
  */
 package Juego;
 
-import java.awt.event.ActionListener;
-import java.util.Random;
-import javax.swing.Timer;
-import java.awt.event.ActionEvent;
 
 /**
  *
  * @author Alejandro
  */
-public class Arquero {
-    
-    
-    int arqX;
-    int arqY;
-    
-    //private double puntajeDebilidad; // Puntaje de debilidad del arquero
-    //private double ValorDeDaño; // Puntaje de daño del arquero arquero
+public class Arquero extends Tropa {
 
     public Arquero(int x, int y) {
-        arqX= x;
-        arqY= y;  
-        Interfaz.mat[arqX][arqY] = 8;
-        
-    }//constructor
-    
-    public void movimiento(){
-    
+        super(x, y);
+        puntajeDebilidad = 0.5;
+        valorDeDaño = 1.0;
+        Interfaz.mat[tropaX][tropaY] = 8;
     }
-    
-    
-    
-    
-    
-    // Métodos específicos del arquero
 
-    // Método para calcular el daño que genera el arquero al castillo
-    /*public double DañoCastillo() {
-        return ValorDeDaño;
-    }*/
+    @Override
+    public void mover(int nuevaX, int nuevaY) {
+
+        Interfaz.mat[tropaX][tropaY] = 1;
+        // rellena la posicion anterior
+        tropaX = nuevaX;
+        tropaY = nuevaY;
+        // se actliza la posicion del caballero
+        Interfaz.mat[tropaX][tropaY] = 8;
+    }
 }

@@ -15,14 +15,13 @@ public class Pila {
     public Pila() {
         this.cima = null;
         this.largo = 0;
-        inicializarPila1(10); //Numero de referencia para la creacion de los nodos
+        inicializarPila1(10); //valor de referencia para la creacion de los nodos
     }
 
     public boolean Vacia() {
         return cima == null;
     }
     
-//El push fue retocado para que imprimiese de menor a mayor
 public void push(int valor){
     Nodo newNode = new Nodo();
     newNode.setValor(valor);
@@ -62,7 +61,7 @@ public void push(int valor){
     public void listar() {
         // Crea una copia de la pila.
         Nodo aux = cima;
-        // Recorre la pila hasta el ultimo node.
+        // Recorre la pila hasta el ultimo nodo.
         while (aux != null) {
             System.out.println("|\t" + aux.getValor() + "\t|");
             System.out.println("-----------------");

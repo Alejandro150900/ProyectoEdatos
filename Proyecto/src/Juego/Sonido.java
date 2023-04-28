@@ -14,29 +14,29 @@ import javax.sound.sampled.Clip;
  */
 public class Sonido {
     
-    private Clip clip;
+    private Clip audio;
 
     public void reproducirSonido(String rutaSonido) {
         try {
             File archivoSonido = new File(rutaSonido);
-            clip = AudioSystem.getClip();
-            clip.open(AudioSystem.getAudioInputStream(archivoSonido));
-            clip.start();
+            audio = AudioSystem.getClip();
+            audio.open(AudioSystem.getAudioInputStream(archivoSonido));
+            audio.start();
         } catch (Exception e) {
             System.out.println("Error al reproducir el sonido: " + e.getMessage());
         }
     }
     
     public void detenerSonido() {
-        clip.stop();
+        audio.stop();
     }
     
     public void pausarSonido() {
-        clip.stop();
+        audio.stop();
     }
     
     public void continuarSonido() {
-        clip.start();
+        audio.start();
     }
 }
     

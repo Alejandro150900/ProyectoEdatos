@@ -19,11 +19,7 @@ public class Main {
         CastilloJ castilloJ = new CastilloJ();
         
         
-//        CastilloCPU castillocpu = new CastilloCPU(); 
-//   
-//        // Realizar pop en la pila del castillo de la CPU
-//        int valorPopJugador = 3; // Valor a pop del castillo de la CPU
-//        castilloJ.pop();
+ 
 
         castilloJ.imprimirCastilloJ();//muestra los valores de la pila1
     }
