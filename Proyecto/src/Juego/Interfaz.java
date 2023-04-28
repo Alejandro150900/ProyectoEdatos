@@ -125,8 +125,8 @@ public class Interfaz {
         py =2;
         //mat[px][py] = 7;
         
+        //prueba commit
         
-        //Arquero arquero1 = new Arquero(6,2);
         
         abajo = 0;
         arriba = 0;
