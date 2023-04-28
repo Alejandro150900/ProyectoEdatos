@@ -18,7 +18,6 @@ import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-//import javax.swing.JOptionPane; 
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
@@ -124,9 +123,10 @@ public class Interfaz {
         mat = tablero(1);
         px =2;
         py =2;
-        mat[px][py] = 7;
+        //mat[px][py] = 7;
         
-        Arquero arquero1 = new Arquero(6,2);
+        
+        //Arquero arquero1 = new Arquero(6,2);
         
         abajo = 0;
         arriba = 0;
@@ -202,7 +202,10 @@ public class Interfaz {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         // Aqui va el codigo para cuando seleccionamos izquierda
+                        
                         ventanaEmergente.dispose();
+                        Mago mag= new Mago(2,9);
+                        jugar();
                     }
                 });
 
@@ -212,6 +215,8 @@ public class Interfaz {
                     public void actionPerformed(ActionEvent e) {
                         // Aqui va el codigo para cuando seleccionamos derecha
                         ventanaEmergente.dispose();
+                        Mago mag = new Mago(6,9);
+                        jugar();
                     }
                 });
 
@@ -239,6 +244,8 @@ public class Interfaz {
                     public void actionPerformed(ActionEvent e) {
                          // Aqui va el codigo para cuando seleccionamos izquierda
                         ventanaEmergente.dispose();
+                        Caballero cab =  new Caballero(2,9);
+                        jugar();
                     }
                 });
 
@@ -247,7 +254,9 @@ public class Interfaz {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                        // Aqui va el codigo para cuando seleccionamos derecha
+                       Caballero cab = new Caballero(6,9);
                         ventanaEmergente.dispose();
+                        jugar();
                     }
                 });
 
@@ -274,9 +283,16 @@ public class Interfaz {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         // Aqui va el codigo para cuando seleccionamos izquierda
+                        Arquero arq = new Arquero(2,9);
                         
+                        //mat[2][9]=8;
                         ventanaEmergente.dispose();
+                        jugar();
+                        
+                        
+                        
                     }
+                    
                 });
 
                 JButton btnDerecha = new JButton("Derecha");
@@ -284,7 +300,11 @@ public class Interfaz {
                     @Override
                     public void actionPerformed(ActionEvent e) {
                         // Aqui va el codigo para cuando seleccionamos derecha
+                        //mat[6][9]=8;
+                        Arquero arq= new Arquero(6,9);
                         ventanaEmergente.dispose();
+                        jugar();
+                        
                     }
                 });
 
@@ -309,11 +329,11 @@ public class Interfaz {
                 
                 {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
                 {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
-                {1, 2, 1, 1, 1, 1, 5, 1, 1, 1, 2, 1},
+                {1, 2, 7, 1, 1, 1, 5, 1, 1, 1, 2, 1},
                 {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
                 {1, 6, 1, 1, 1, 1, 4, 1, 1, 1, 6, 1},
                 {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
-                {1, 2, 1, 1, 1, 1, 5, 1, 1, 1, 2, 1},
+                {1, 2, 8, 1, 1, 1, 5, 1, 1, 1, 2, 1},
                 {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
                 {1, 1, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1},
                 {3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3},

@@ -12,13 +12,13 @@ public class Caballero {
    
     private double ValorDeDaño; // Puntaje de daño del caballero
     
-    int posX;
-    int posY;
+    int cabX;
+    int cabY;
 
     public Caballero(int x, int y){
-        posX = x;
-        posY = y;
-       // Interfaz.mat[posX][posY]=7;
+        cabX = x;
+        cabY = y;
+       Interfaz.mat[cabX][cabY]=7;
         
     }
 

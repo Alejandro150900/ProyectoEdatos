@@ -32,28 +32,11 @@ public class Arquero {
         Interfaz.mat[arqX][arqY] = 8;
         direccion = 0;
     }//constructor
-    /*
+    
     public void movimiento(){
-        timer = new Timer (400, new ActionListener()
-        {
-            
-            public void actionPerformed(ActionEvent e){
-               //arriba
-                if(direccion == 0){
-                    if(Interfaz.mat[arqX-1][arqY]==2){
-                        System.out.println("haciendo daño a torre");
-                    }
-                }
-                //abajo
-                if(direccion == 1){
-                
-                }
-            }    
-                
-        }
-         
+    
     }//fin metodo
-    */
+    
     
     
     

@@ -11,10 +11,15 @@ package Juego;
 public class Mago {
      private double puntajeDebilidad; // Puntaje de debilidad del mago
     private double ValorDeDaño; // Puntaje de daño del mago
-
-    public Mago() {
-        this.puntajeDebilidad = 0.5;
-        this.ValorDeDaño = 1.5;
+    int magX;
+    int magY;
+    
+    
+    
+    public Mago(int x, int y) {
+        magX = x;
+        magY = y;
+        Interfaz.mat[magX][magY]=9;
     }
 
     // Métodos específicos del mago
