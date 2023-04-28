@@ -138,7 +138,12 @@ public class Interfaz {
     }
 
     public void jugar() {
+        
+        
+        Sonido sonido = new Sonido();
 
+        sonido.reproducirSonido("C:\\Users\\kevin\\Desktop\\Archivos U\\VII cuatri\\Estructura\\ProyectoEdatos\\Proyecto\\SonidosProyecto\\Cancion.Wav");
+        
         menu.setVisible(false);
         panelJuego = new JPanel();
         panelJuego.setLayout(null);
@@ -192,6 +197,7 @@ public class Interfaz {
         btnMago.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                sonido.reproducirSonido("C:\\Users\\kevin\\Desktop\\Archivos U\\VII cuatri\\Estructura\\ProyectoEdatos\\Proyecto\\SonidosProyecto\\Mago.Wav");
                 JFrame ventanaEmergente = new JFrame("Selección de dirección");
                 ventanaEmergente.setSize(300, 100);
                 ventanaEmergente.setLocationRelativeTo(null);
@@ -233,6 +239,7 @@ public class Interfaz {
         btnCaballero.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                sonido.reproducirSonido("C:\\Users\\kevin\\Desktop\\Archivos U\\VII cuatri\\Estructura\\ProyectoEdatos\\Proyecto\\SonidosProyecto\\Caballero.Wav");
                 JFrame ventanaEmergente = new JFrame("Selección de dirección");
                 ventanaEmergente.setSize(300, 100);
                 ventanaEmergente.setLocationRelativeTo(null);
@@ -273,6 +280,7 @@ public class Interfaz {
         btnArquero.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                 sonido.reproducirSonido("C:\\Users\\kevin\\Desktop\\Archivos U\\VII cuatri\\Estructura\\ProyectoEdatos\\Proyecto\\SonidosProyecto\\Arquero.Wav");
                 JFrame ventanaEmergente = new JFrame("Selección de dirección");
                 ventanaEmergente.setSize(300, 100);
                 ventanaEmergente.setLocationRelativeTo(null);
